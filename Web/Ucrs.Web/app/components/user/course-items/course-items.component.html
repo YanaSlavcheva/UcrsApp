@@ -1,0 +1,37 @@
+﻿<h2>Course Items</h2>
+
+<p>
+    <a routerLink="/user/course-item-create">Create New</a>
+</p>
+
+<div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Is Done?</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="!courseItems.length">
+            <td colspan="3" class="text-center">
+                <em>No Course items...</em>
+            </td>
+        </tr>
+
+        <tr *ngFor="let courseItem of courseItems">
+            <td>{{courseItem.title}}</td>
+            <td>
+                <span *ngIf="courseItem.isDone" class="label label-success">Yes</span>
+                <span *ngIf="!courseItem.isDone" class="label label-warning">No</span>
+            </td>
+            <td>
+                <button *ngIf="!courseItem.isDone" (click)="markAsDone(courseItem)" class="btn btn-sm btn-success">
+                    Mark as Done
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
