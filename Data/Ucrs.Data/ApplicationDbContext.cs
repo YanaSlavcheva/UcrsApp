@@ -6,11 +6,11 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    using Ucrs.Data.Common.Models;
-    using Ucrs.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+
+    using Ucrs.Data.Common.Models;
+    using Ucrs.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -25,6 +25,8 @@
         }
 
         public DbSet<Course> Courses { get; set; }
+
+        public DbSet<ApplicationUserCourse> ApplicationUsersInCourses { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -72,6 +74,9 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<ApplicationUserCourse>()
+                .HasKey(auc => new { auc.ApplicationUserId, auc.CourseId });
         }
 
         private static void ConfigureUserIdentityRelations(ModelBuilder builder)

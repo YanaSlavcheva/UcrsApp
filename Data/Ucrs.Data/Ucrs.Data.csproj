@@ -40,8 +40,4 @@
     <ProjectReference Include="..\Ucrs.Data.Models\Ucrs.Data.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

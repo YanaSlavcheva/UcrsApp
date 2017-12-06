@@ -163,7 +163,7 @@
                 });
 
             migrationBuilder.CreateTable(
-                name: "Courses",
+                name: "CourseItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -178,9 +178,9 @@
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Courses", x => x.Id);
+                    table.PrimaryKey("PK_CourseItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Courses_AspNetUsers_AuthorId",
+                        name: "FK_CourseItems_AspNetUsers_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -237,13 +237,13 @@
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_AuthorId",
-                table: "Courses",
+                name: "IX_CourseItems_AuthorId",
+                table: "CourseItems",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_IsDeleted",
-                table: "Courses",
+                name: "IX_CourseItems_IsDeleted",
+                table: "CourseItems",
                 column: "IsDeleted");
         }
 
@@ -265,7 +265,7 @@
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Courses");
+                name: "CourseItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

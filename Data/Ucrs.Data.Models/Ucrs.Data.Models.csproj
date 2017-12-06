@@ -15,6 +15,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Ucrs.Common\Ucrs.Common.csproj" />
     <ProjectReference Include="..\Ucrs.Data.Common\Ucrs.Data.Common.csproj" />
   </ItemGroup>
   

@@ -2,10 +2,10 @@
 {
     using System.Security.Claims;
 
-    using Ucrs.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+    using Ucrs.Data.Models;
 
     public class ApplicationUserStore : UserStore<
         ApplicationUser,

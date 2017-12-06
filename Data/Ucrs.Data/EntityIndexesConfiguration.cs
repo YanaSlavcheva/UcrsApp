@@ -2,9 +2,9 @@
 {
     using System.Linq;
 
-    using Ucrs.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+
+    using Ucrs.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

@@ -3,11 +3,11 @@
     using System;
     using System.Linq;
 
-    using Ucrs.Common;
-    using Ucrs.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+
+    using Ucrs.Common;
+    using Ucrs.Data.Models;
 
     public static class ApplicationDbContextSeeder
     {
