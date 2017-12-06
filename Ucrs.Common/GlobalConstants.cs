@@ -7,5 +7,9 @@
         public const string JsonContentType = "application/json";
 
         public const int CourseTitleMaxLength = 200;
+
+        public const int CoursePointsMinValue = 0;
+
+        public const int CoursePointsMaxValue = 10;
     }
 }

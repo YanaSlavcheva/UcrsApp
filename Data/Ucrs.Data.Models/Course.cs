@@ -17,7 +17,8 @@
         [MaxLength(GlobalConstants.CourseTitleMaxLength)]
         public string Title { get; set; }
 
-        [Range(0, 200)]
+        [Required]
+        [Range(GlobalConstants.CoursePointsMinValue, GlobalConstants.CoursePointsMaxValue)]
         public int Points { get; set; }
 
         public virtual ICollection<ApplicationUserCourse> ApplicationUsersInCourses { get; set; }
