@@ -11,6 +11,7 @@
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
+    using Microsoft.EntityFrameworkCore;
 
     public class CoursesController : BaseController
     {
@@ -24,7 +25,12 @@
         [HttpGet]
         public IActionResult All()
         {
-            var courses = this.repository.All().To<CourseViewModel>().ToList();
+            var courses = this.repository
+                .All()
+                .Include(c => c.ApplicationUsersInCourses)
+                .ThenInclude(auc => auc.ApplicationUser)
+                //.To<CourseViewModel>()
+                .ToList();
 
             return this.Ok(courses);
         }
