@@ -3,16 +3,14 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+
     using Ucrs.Data.Common.Repositories;
     using Ucrs.Data.Models;
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
-
-    using AutoMapper;
-
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Mvc;
 
     public class CoursesController : BaseController
     {
@@ -26,8 +24,7 @@
         [HttpGet]
         public IActionResult All()
         {
-            var userId = this.User.GetId();
-            var courses = this.repository.All().Where(t => t.AuthorId == userId).To<CourseViewModel>().ToList();
+            var courses = this.repository.All().To<CourseViewModel>().ToList();
 
             return this.Ok(courses);
         }
@@ -41,7 +38,6 @@
             }
 
             var course = Mapper.Map<Course>(model);
-            course.AuthorId = this.User.GetId();
 
             this.repository.Add(course);
             await this.repository.SaveChangesAsync();
@@ -52,25 +48,25 @@
         [HttpPost]
         public async Task<IActionResult> MarkAsDone(int id)
         {
-            var course = await this.repository.GetByIdAsync(id);
+            ////var course = await this.repository.GetByIdAsync(id);
 
-            if (course == null)
-            {
-                return this.NotFound();
-            }
+            ////if (course == null)
+            ////{
+            ////    return this.NotFound();
+            ////}
 
-            if (course.AuthorId != this.User.GetId())
-            {
-                return this.Forbid(JwtBearerDefaults.AuthenticationScheme);
-            }
+            ////if (course.AuthorId != this.User.GetId())
+            ////{
+            ////    return this.Forbid(JwtBearerDefaults.AuthenticationScheme);
+            ////}
 
-            if (!course.IsDone)
-            {
-                course.IsDone = true;
+            ////if (!course.IsDone)
+            ////{
+            ////    course.IsDone = true;
 
-                this.repository.Update(course);
-                await this.repository.SaveChangesAsync();
-            }
+            ////    this.repository.Update(course);
+            ////    await this.repository.SaveChangesAsync();
+            ////}
 
             return this.Ok();
         }

@@ -8,9 +8,9 @@ import { Course } from '../../domain/course';
 @Injectable()
 export class CoursesDataService {
     private static readonly URLS = {
-        ALL: 'api/courseitems/all',
-        CREATE: 'api/courseitems/create',
-        MARK_AS_DONE: 'api/courseitems/markasdone/'
+        ALL: 'api/courses/all',
+        CREATE: 'api/courses/create',
+        MARK_AS_DONE: 'api/courses/markasdone/'
     };
 
     constructor(private httpClient: HttpClient) { }
