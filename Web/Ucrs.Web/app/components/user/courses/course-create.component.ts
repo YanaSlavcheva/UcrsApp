@@ -20,6 +20,6 @@ export class CourseCreateComponent {
     public create(): void {
         this.coursesDataService.create(this.course).subscribe(
             () => this.routerService.navigateByUrl('/user/courses'),
-            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Create Course item failed.');
+            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Create Course failed.');
     }
 }

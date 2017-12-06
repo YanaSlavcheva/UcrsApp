@@ -1,5 +1,7 @@
 ﻿namespace Ucrs.Web.ViewModels.Courses
 {
+    using System.Collections.Generic;
+
     using Ucrs.Data.Models;
     using Ucrs.Web.Infrastructure.Mapping;
 
@@ -9,6 +11,8 @@
 
         public string Title { get; set; }
 
-        public bool IsDone { get; set; }
+        public int Points { get; set; }
+
+        public ICollection<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
