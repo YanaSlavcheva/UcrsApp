@@ -7,18 +7,18 @@
     using Ucrs.Data.Models;
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
-    using Ucrs.Web.ViewModels.CourseItems;
+    using Ucrs.Web.ViewModels.Courses;
 
     using AutoMapper;
 
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CourseItemsController : BaseController
+    public class CoursesController : BaseController
     {
-        private readonly IDeletableEntityRepository<CourseItem> repository;
+        private readonly IDeletableEntityRepository<Course> repository;
 
-        public CourseItemsController(IDeletableEntityRepository<CourseItem> repository)
+        public CoursesController(IDeletableEntityRepository<Course> repository)
         {
             this.repository = repository;
         }
@@ -27,48 +27,48 @@
         public IActionResult All()
         {
             var userId = this.User.GetId();
-            var courseItems = this.repository.All().Where(t => t.AuthorId == userId).To<CourseItemViewModel>().ToList();
+            var courses = this.repository.All().Where(t => t.AuthorId == userId).To<CourseViewModel>().ToList();
 
-            return this.Ok(courseItems);
+            return this.Ok(courses);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]CourseItemBindingModel model)
+        public async Task<IActionResult> Create([FromBody]CourseBindingModel model)
         {
             if (model == null || !this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState.GetFirstError());
             }
 
-            var courseItem = Mapper.Map<CourseItem>(model);
-            courseItem.AuthorId = this.User.GetId();
+            var course = Mapper.Map<Course>(model);
+            course.AuthorId = this.User.GetId();
 
-            this.repository.Add(courseItem);
+            this.repository.Add(course);
             await this.repository.SaveChangesAsync();
 
-            return this.Ok(Mapper.Map<CourseItemViewModel>(courseItem));
+            return this.Ok(Mapper.Map<CourseViewModel>(course));
         }
 
         [HttpPost]
         public async Task<IActionResult> MarkAsDone(int id)
         {
-            var courseItem = await this.repository.GetByIdAsync(id);
+            var course = await this.repository.GetByIdAsync(id);
 
-            if (courseItem == null)
+            if (course == null)
             {
                 return this.NotFound();
             }
 
-            if (courseItem.AuthorId != this.User.GetId())
+            if (course.AuthorId != this.User.GetId())
             {
                 return this.Forbid(JwtBearerDefaults.AuthenticationScheme);
             }
 
-            if (!courseItem.IsDone)
+            if (!course.IsDone)
             {
-                courseItem.IsDone = true;
+                course.IsDone = true;
 
-                this.repository.Update(courseItem);
+                this.repository.Update(course);
                 await this.repository.SaveChangesAsync();
             }
 

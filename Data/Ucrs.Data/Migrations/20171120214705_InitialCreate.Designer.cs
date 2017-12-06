@@ -116,7 +116,7 @@ namespace Ucrs.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Ucrs.Data.Models.CourseItem", b =>
+            modelBuilder.Entity("Ucrs.Data.Models.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -143,7 +143,7 @@ namespace Ucrs.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("CourseItems");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -230,7 +230,7 @@ namespace Ucrs.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Ucrs.Data.Models.CourseItem", b =>
+            modelBuilder.Entity("Ucrs.Data.Models.Course", b =>
                 {
                     b.HasOne("Ucrs.Data.Models.ApplicationUser", "Author")
                         .WithMany()

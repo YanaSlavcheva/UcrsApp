@@ -1,9 +1,9 @@
-﻿namespace Ucrs.Web.ViewModels.CourseItems
+﻿namespace Ucrs.Web.ViewModels.Courses
 {
     using Ucrs.Data.Models;
     using Ucrs.Web.Infrastructure.Mapping;
 
-    public class CourseItemViewModel : IMapFrom<CourseItem>
+    public class CourseViewModel : IMapFrom<Course>
     {
         public int Id { get; set; }
 

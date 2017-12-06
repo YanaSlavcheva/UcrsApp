@@ -4,7 +4,7 @@
 
     using Ucrs.Data.Common.Models;
 
-    public class CourseItem : BaseDeletableModel<int>
+    public class Course : BaseDeletableModel<int>
     {
         [Required]
         public string Title { get; set; }

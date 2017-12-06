@@ -2,8 +2,8 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import {
-    CourseItemCreateComponent,
-    CourseItemsComponent,
+    CourseCreateComponent,
+    CoursesComponent,
 
     UserComponent
 } from './index';
@@ -17,10 +17,10 @@ const ACCOUNT_ROUTES: Routes = [
         canActivate: [AuthGuardService],
         canActivateChild: [AuthGuardService],
         children: [
-            { path: '', redirectTo: '/user/course-items', pathMatch: 'full' },
+            { path: '', redirectTo: '/user/courses', pathMatch: 'full' },
 
-            { path: 'course-item-create', component: CourseItemCreateComponent },
-            { path: 'course-items', component: CourseItemsComponent }
+            { path: 'course-create', component: CourseCreateComponent },
+            { path: 'courses', component: CoursesComponent }
         ]
     }
 ];

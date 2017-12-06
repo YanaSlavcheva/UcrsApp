@@ -1,4 +1,4 @@
-﻿import { CourseItemsDataService } from './data/course-items-data.service';
+﻿import { CoursesDataService } from './data/courses-data.service';
 
 import { AuthGuardService } from './guards/auth-guard.service';
 import { AuthNoGuardService } from './guards/auth-no-guard.service';
@@ -13,7 +13,7 @@ import { RouterService } from './router.service';
 import { StorageService } from './storage.service';
 import { WindowRefService } from './window-ref.service';
 
-export * from './data/course-items-data.service';
+export * from './data/courses-data.service';
 
 export * from './guards/auth-guard.service';
 export * from './guards/auth-no-guard.service';
@@ -29,7 +29,7 @@ export * from './storage.service';
 export * from './window-ref.service';
 
 export const APP_SERVICES = [
-    CourseItemsDataService,
+    CoursesDataService,
 
     AuthGuardService,
     AuthNoGuardService,

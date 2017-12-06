@@ -18,7 +18,7 @@
     using Ucrs.Services.Messaging;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.Infrastructure.Middlewares.Auth;
-    using Ucrs.Web.ViewModels.CourseItems;
+    using Ucrs.Web.ViewModels.Courses;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Diagnostics;
@@ -111,7 +111,7 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            AutoMapperConfig.RegisterMappings(typeof(CourseItemViewModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(typeof(CourseViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())

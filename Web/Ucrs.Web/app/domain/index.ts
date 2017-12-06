@@ -1,3 +1,3 @@
-﻿export * from './course-item';
+﻿export * from './course';
 export * from './user-login';
 export * from './user-register';
