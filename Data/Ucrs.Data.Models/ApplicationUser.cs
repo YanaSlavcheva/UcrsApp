@@ -8,7 +8,7 @@ namespace Ucrs.Data.Models
 
     using Ucrs.Data.Common.Models;
 
-    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
+    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity, IIdentifyable<string>
     {
         public ApplicationUser()
         {
