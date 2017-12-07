@@ -38,6 +38,7 @@
                 .Include(c => c.ApplicationUsersInCourses)
                 .ThenInclude(auc => auc.ApplicationUser)
                 .To<CourseViewModel>(new { userId })
+                .OrderByDescending(cvm => cvm.IsUserRegistered)
                 .ToList();
 
             return this.Ok(courses);
