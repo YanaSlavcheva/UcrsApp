@@ -33,6 +33,7 @@
     using Microsoft.IdentityModel.Tokens;
 
     using Newtonsoft.Json;
+    using Ucrs.Services.Data.Courses;
     using Ucrs.Services.Courses;
 
     public class Startup
@@ -104,6 +105,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISmsSender, NullMessageSender>();
             services.AddTransient<ICoursesDataService, CoursesDataService>();
+            services.AddTransient<ICoursesBusinessService, CoursesBusinessService>();
 
             // Identity stores
             services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();

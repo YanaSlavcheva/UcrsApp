@@ -29,6 +29,9 @@ export class CoursesComponent implements OnInit {
                 this.infoMessage = 'Register for course was successful.';
                 this.ngOnInit();
             },
-            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Register for Course failed.');
+            (error: HttpErrorResponse) => {
+                this.errorMessage = error.error || 'Register for Course failed.';
+                this.infoMessage = null;
+            });
     }
 }

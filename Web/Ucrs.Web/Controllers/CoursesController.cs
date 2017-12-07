@@ -5,11 +5,10 @@
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
-
     using Ucrs.Common;
-    using Ucrs.Data.Common.Repositories;
     using Ucrs.Data.Models;
     using Ucrs.Services.Courses;
+    using Ucrs.Services.Data.Courses;
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
@@ -18,14 +17,14 @@
     {
         private readonly ICoursesDataService coursesData;
 
-        private readonly IRepository<ApplicationUserCourse> applicationUsersForCourses;
+        private readonly ICoursesBusinessService coursesBusiness;
 
         public CoursesController(
             ICoursesDataService coursesData,
-            IRepository<ApplicationUserCourse> applicationUsersForCourses)
+            ICoursesBusinessService coursesBusiness)
         {
             this.coursesData = coursesData;
-            this.applicationUsersForCourses = applicationUsersForCourses;
+            this.coursesBusiness = coursesBusiness;
         }
 
         [HttpGet]
@@ -52,8 +51,7 @@
 
             var course = Mapper.Map<Course>(model);
 
-            //this.courses.Add(course);
-            //await this.courses.SaveChangesAsync();
+            await this.coursesData.Add(course);
 
             return this.Ok(Mapper.Map<CourseViewModel>(course));
         }
@@ -61,47 +59,34 @@
         [HttpPost]
         public async Task<IActionResult> RegisterForCourse(int id)
         {
-            //var course = await this.courses.GetByIdAsync(id);
+            var course = await this.coursesData.GetByIdAsync(id);
 
-            //if (course == null)
-            //{
-            //    return this.NotFound();
-            //}
+            if (course == null)
+            {
+                return this.NotFound();
+            }
 
-            //var userId = this.User.GetId();
-            //var userCourseIds = this.applicationUsersForCourses
-            //    .All()
-            //    .Where(aufc => aufc.ApplicationUserId == userId)
-            //    .Select(aufc => aufc.CourseId)
-            //    .ToList();
+            var userId = this.User.GetId();
+            var userCourseIds = this.coursesData.GetAllCourseIdsByUser(userId).ToList();
 
-            //var userPointsFromCourses = this.courses
-            //    .All()
-            //    .Where(c => userCourseIds.Contains(c.Id))
-            //    .Sum(c => c.Points);
+            var userPointsFromCourses = this.coursesData
+                .GetAll()
+                .Where(c => userCourseIds.Contains(c.Id))
+                .Sum(c => c.Points);
 
-            //if (userPointsFromCourses >= GlobalConstants.MaxCoursePointsPerUser)
-            //{
-            //    return this.BadRequest("Student cannot register in any more courses. The student has maximum points already.");
-            //}
+            if (userPointsFromCourses >= GlobalConstants.MaxCoursePointsPerUser)
+            {
+                return this.BadRequest("Student cannot register in any more courses. The student has maximum points already.");
+            }
 
-            //var isUserEnrolledInCourse = this.applicationUsersForCourses
-            //    .All()
-            //    .Any(aufc => aufc.ApplicationUserId == userId && aufc.CourseId == id);
+            var isUserEnrolledInCourse = this.coursesBusiness.IsUserEnrolled(userId, course.Id);
 
-            //if (isUserEnrolledInCourse)
-            //{
-            //    return this.BadRequest("Student is already registered in this course.");
-            //}
+            if (isUserEnrolledInCourse)
+            {
+                return this.BadRequest("Student is already registered in this course.");
+            }
 
-            //var applicationUserForCourse = new ApplicationUserCourse()
-            //{
-            //    ApplicationUserId = userId,
-            //    CourseId = course.Id
-            //};
-
-            //this.applicationUsersForCourses.Add(applicationUserForCourse);
-            //await this.courses.SaveChangesAsync();
+            await this.coursesBusiness.RegisterUser(userId, course.Id);
 
             return this.Ok();
         }

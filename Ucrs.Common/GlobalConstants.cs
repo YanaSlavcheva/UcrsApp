@@ -16,6 +16,6 @@
 
         public const int CoursePointsMaxValue = 10;
 
-        public const int MaxCoursePointsPerUser = 100;
+        public const int MaxCoursePointsPerUser = 20;
     }
 }
