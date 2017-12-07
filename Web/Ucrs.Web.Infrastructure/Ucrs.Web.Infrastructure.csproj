@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\Ucrs.Services.Data\Ucrs.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Ucrs.Services.Messaging\Ucrs.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\Ucrs.Services\Ucrs.Services.csproj" />
     <ProjectReference Include="..\..\Ucrs.Common\Ucrs.Common.csproj" />
   </ItemGroup>
 

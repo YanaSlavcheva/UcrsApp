@@ -9,17 +9,6 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using Ucrs.Common;
-    using Ucrs.Data;
-    using Ucrs.Data.Common.Repositories;
-    using Ucrs.Data.Models;
-    using Ucrs.Data.Repositories;
-    using Ucrs.Data.Seeding;
-    using Ucrs.Services.Messaging;
-    using Ucrs.Web.Infrastructure.Mapping;
-    using Ucrs.Web.Infrastructure.Middlewares.Auth;
-    using Ucrs.Web.ViewModels.Courses;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Diagnostics;
     using Microsoft.AspNetCore.Hosting;
@@ -31,10 +20,18 @@
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
-
     using Newtonsoft.Json;
-    using Ucrs.Services.Data.Courses;
-    using Ucrs.Services.Courses;
+
+    using Ucrs.Common;
+    using Ucrs.Data;
+    using Ucrs.Data.Common.Repositories;
+    using Ucrs.Data.Models;
+    using Ucrs.Data.Repositories;
+    using Ucrs.Data.Seeding;
+    using Ucrs.Web.Infrastructure.Extensions;
+    using Ucrs.Web.Infrastructure.Mapping;
+    using Ucrs.Web.Infrastructure.Middlewares.Auth;
+    using Ucrs.Web.ViewModels.Courses;
 
     public class Startup
     {
@@ -102,10 +99,7 @@
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
             // Application services
-            services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISmsSender, NullMessageSender>();
-            services.AddTransient<ICoursesDataService, CoursesDataService>();
-            services.AddTransient<ICoursesBusinessService, CoursesBusinessService>();
+            services.AddApplicationServices();
 
             // Identity stores
             services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
