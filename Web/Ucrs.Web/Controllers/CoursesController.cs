@@ -12,7 +12,6 @@
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
-    using System;
 
     public class CoursesController : BaseController
     {
@@ -53,6 +52,35 @@
             var course = Mapper.Map<Course>(model);
 
             await this.coursesData.Add(course);
+
+            return this.Ok(Mapper.Map<CourseViewModel>(course));
+        }
+
+        [HttpGet]
+        public IActionResult GetUpdate(int id)
+        {
+            var courseForUpdate = this.coursesData
+                .GetAll()
+                .Where(c => c.Id == id)
+                .To<CourseBindingModel>()
+                .FirstOrDefault();
+
+            return this.Ok(courseForUpdate);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update([FromBody]CourseBindingModel model)
+        {
+            if (model == null || !this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState.GetFirstError());
+            }
+
+            var course = await this.coursesData.GetByIdAsync(model.Id);
+
+            Mapper.Map(model, course);
+
+            await this.coursesData.Update(course);
 
             return this.Ok(Mapper.Map<CourseViewModel>(course));
         }
