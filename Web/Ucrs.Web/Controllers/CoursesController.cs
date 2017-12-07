@@ -31,8 +31,6 @@
         [HttpGet]
         public IActionResult All()
         {
-            throw new Exception();
-
             var userId = this.User.GetId();
 
             var courses = this.coursesData
