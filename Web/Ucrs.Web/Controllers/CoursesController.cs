@@ -17,9 +17,14 @@
     {
         private readonly IDeletableEntityRepository<Course> repository;
 
-        public CoursesController(IDeletableEntityRepository<Course> repository)
+        private readonly IRepository<ApplicationUserCourse> applicationUsersForCourses;
+
+        public CoursesController(
+            IDeletableEntityRepository<Course> repository,
+            IRepository<ApplicationUserCourse> applicationUsersForCourses)
         {
             this.repository = repository;
+            this.applicationUsersForCourses = applicationUsersForCourses;
         }
 
         [HttpGet]
@@ -52,27 +57,34 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> MarkAsDone(int id)
+        public async Task<IActionResult> RegisterForCourse(int id)
         {
-            ////var course = await this.repository.GetByIdAsync(id);
+            var course = await this.repository.GetByIdAsync(id);
 
-            ////if (course == null)
-            ////{
-            ////    return this.NotFound();
-            ////}
+            if (course == null)
+            {
+                return this.NotFound();
+            }
 
-            ////if (course.AuthorId != this.User.GetId())
-            ////{
-            ////    return this.Forbid(JwtBearerDefaults.AuthenticationScheme);
-            ////}
+            var userId = this.User.GetId();
 
-            ////if (!course.IsDone)
-            ////{
-            ////    course.IsDone = true;
+            var isUserEnrolledInCourse = this.applicationUsersForCourses
+                .All()
+                .Any(aufc => aufc.ApplicationUserId == userId && aufc.CourseId == id);
 
-            ////    this.repository.Update(course);
-            ////    await this.repository.SaveChangesAsync();
-            ////}
+            if (isUserEnrolledInCourse)
+            {
+                return this.BadRequest("Student is already registered in this course.");
+            }
+
+            var applicationUserForCourse = new ApplicationUserCourse()
+            {
+                ApplicationUserId = userId,
+                CourseId = course.Id
+            };
+
+            this.applicationUsersForCourses.Add(applicationUserForCourse);
+            await this.repository.SaveChangesAsync();
 
             return this.Ok();
         }

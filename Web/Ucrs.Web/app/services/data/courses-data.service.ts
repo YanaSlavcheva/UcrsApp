@@ -10,7 +10,7 @@ export class CoursesDataService {
     private static readonly URLS = {
         ALL: 'api/courses/all',
         CREATE: 'api/courses/create',
-        MARK_AS_DONE: 'api/courses/markasdone/'
+        REGISTER_FOR_COURSE: 'api/courses/registerforcourse/'
     };
 
     constructor(private httpClient: HttpClient) { }
@@ -23,7 +23,7 @@ export class CoursesDataService {
         return this.httpClient.post(CoursesDataService.URLS.CREATE, course);
     }
 
-    public markAsDone(id: number): Observable<any> {
-        return this.httpClient.post(`${CoursesDataService.URLS.MARK_AS_DONE}${id}`, null, { responseType: 'text' });
+    public registerForCourse(id: number): Observable<any> {
+        return this.httpClient.post(`${CoursesDataService.URLS.REGISTER_FOR_COURSE}${id}`, null, { responseType: 'text' });
     }
 }

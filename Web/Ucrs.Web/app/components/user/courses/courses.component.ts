@@ -22,13 +22,13 @@ export class CoursesComponent implements OnInit {
         this.coursesDataService.getAll().subscribe((data: Course[]) => this.courses = data);
     }
 
-    public markAsDone(course: Course): void {
-        this.coursesDataService.markAsDone(course.id).subscribe(
+    public registerForCourse(course: Course): void {
+        this.coursesDataService.registerForCourse(course.id).subscribe(
             () => {
                 this.errorMessage = null;
 
-                course.isDone = true;
+                //course.isDone = true;
             },
-            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Mark Course as done failed.');
+            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Register for Course failed.');
     }
 }
