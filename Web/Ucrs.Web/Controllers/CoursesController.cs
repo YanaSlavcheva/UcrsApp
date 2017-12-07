@@ -15,22 +15,22 @@
 
     public class CoursesController : BaseController
     {
-        private readonly IDeletableEntityRepository<Course> repository;
+        private readonly IDeletableEntityRepository<Course> courses;
 
         private readonly IRepository<ApplicationUserCourse> applicationUsersForCourses;
 
         public CoursesController(
-            IDeletableEntityRepository<Course> repository,
+            IDeletableEntityRepository<Course> courses,
             IRepository<ApplicationUserCourse> applicationUsersForCourses)
         {
-            this.repository = repository;
+            this.courses = courses;
             this.applicationUsersForCourses = applicationUsersForCourses;
         }
 
         [HttpGet]
         public IActionResult All()
         {
-            var courses = this.repository
+            var courses = this.courses
                 .All()
                 .Include(c => c.ApplicationUsersInCourses)
                 .ThenInclude(auc => auc.ApplicationUser)
@@ -50,8 +50,8 @@
 
             var course = Mapper.Map<Course>(model);
 
-            this.repository.Add(course);
-            await this.repository.SaveChangesAsync();
+            this.courses.Add(course);
+            await this.courses.SaveChangesAsync();
 
             return this.Ok(Mapper.Map<CourseViewModel>(course));
         }
@@ -59,7 +59,7 @@
         [HttpPost]
         public async Task<IActionResult> RegisterForCourse(int id)
         {
-            var course = await this.repository.GetByIdAsync(id);
+            var course = await this.courses.GetByIdAsync(id);
 
             if (course == null)
             {
@@ -84,7 +84,7 @@
             };
 
             this.applicationUsersForCourses.Add(applicationUserForCourse);
-            await this.repository.SaveChangesAsync();
+            await this.courses.SaveChangesAsync();
 
             return this.Ok();
         }
