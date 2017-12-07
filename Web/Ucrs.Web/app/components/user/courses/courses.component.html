@@ -32,16 +32,13 @@
                 <span *ngIf="course.points" class="label label-success">{{course.points}}</span>
             </td>
             <td>
-                <button *ngIf="!course.isDone" (click)="markAsDone(course)" class="btn btn-sm btn-success">
+                <button (click)="markAsDone(course)" class="btn btn-sm btn-success">
                     Register for course
                 </button>
             </td>
             <td>
-                <span *ngIf="course.users" class="label label-success">
-                    {{course.ApplicationUsersInCourses}}
-                    <!--<p *ngFor="let user of course.users">
-                        {{user.UserName}}
-                    </p>-->
+                <span>
+                    {{course.userNamesList}}
                 </span>
             </td>
         </tr>

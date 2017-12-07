@@ -5,13 +5,13 @@
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
 
     using Ucrs.Data.Common.Repositories;
     using Ucrs.Data.Models;
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
-    using Microsoft.EntityFrameworkCore;
 
     public class CoursesController : BaseController
     {
@@ -29,7 +29,7 @@
                 .All()
                 .Include(c => c.ApplicationUsersInCourses)
                 .ThenInclude(auc => auc.ApplicationUser)
-                //.To<CourseViewModel>()
+                .To<CourseViewModel>()
                 .ToList();
 
             return this.Ok(courses);

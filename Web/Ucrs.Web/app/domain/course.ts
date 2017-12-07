@@ -3,5 +3,5 @@
 
     public title: string;
 
-    public isDone: boolean;
+    public userNamesList: string;
 }
