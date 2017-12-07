@@ -9,6 +9,8 @@
     {
         Task Add(Course course);
 
+        Task Update(Course course);
+
         IQueryable<Course> GetAll();
 
         Task<Course> GetByIdAsync(int id);

@@ -22,6 +22,12 @@
             await this.courses.SaveChangesAsync();
         }
 
+        public async Task Update(Course course)
+        {
+            this.courses.Update(course);
+            await this.courses.SaveChangesAsync();
+        }
+
         public IQueryable<Course> GetAll() => this.courses.All();
 
         public async Task<Course> GetByIdAsync(int id) => await this.courses.GetByIdAsync(id);
