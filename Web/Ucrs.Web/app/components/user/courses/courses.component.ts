@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { CoursesDataService } from '../../../services/index';
+import { CoursesDataService, RouterService } from '../../../services/index';
 
 import { Course } from '../../../domain/index';
 
@@ -12,7 +12,7 @@ import { Course } from '../../../domain/index';
 })
 
 export class CoursesComponent implements OnInit {
-    constructor(private coursesDataService: CoursesDataService) { }
+    constructor(private coursesDataService: CoursesDataService, private routerService: RouterService) { }
 
     public courses: Course[] = [];
     public errorMessage: string = null;
@@ -34,4 +34,10 @@ export class CoursesComponent implements OnInit {
                 this.infoMessage = null;
             });
     }
+
+    //public update(course: Course): void {
+    //    this.coursesDataService.update(course).subscribe(
+    //        () => this.routerService.navigateByUrl('/user/courses'),
+    //        (error: HttpErrorResponse) => this.errorMessage = error.error || 'Update Course failed.');
+    //}
 }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {
     CourseCreateComponent,
+    CourseUpdateComponent,
     CoursesComponent,
 
     UserComponent
@@ -20,6 +21,7 @@ const ACCOUNT_ROUTES: Routes = [
             { path: '', redirectTo: '/user/courses', pathMatch: 'full' },
 
             { path: 'course-create', component: CourseCreateComponent },
+            { path: 'course-update/:id', component: CourseUpdateComponent },
             { path: 'courses', component: CoursesComponent }
         ]
     }

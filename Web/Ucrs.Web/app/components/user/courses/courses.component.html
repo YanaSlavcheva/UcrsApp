@@ -12,6 +12,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Manage</th>
             <th>Title</th>
             <th>Points</th>
             <th>Am I registered</th>
@@ -27,6 +28,12 @@
         </tr>
 
         <tr *ngFor="let course of courses">
+            <td>
+                <a routerLink="/user/course-update/{{course.id}}">Update course</a>
+                <!--<button (click)="update(course)" class="btn btn-sm btn-success">
+                    Update course
+                </button>-->
+            </td>
             <td>{{course.title}}</td>
             <td>
                 <span *ngIf="course.points" class="label label-default">{{course.points}}</span>
