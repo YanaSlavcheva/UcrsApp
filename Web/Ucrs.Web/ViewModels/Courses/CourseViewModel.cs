@@ -19,14 +19,23 @@
 
         public string UserNamesList => this.UserNames.Any() ? string.Join(',', this.UserNames) : string.Empty;
 
+        public bool IsUserRegistered { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
+            string userId = "";
+
             configuration.CreateMap<Course, CourseViewModel>()
                 .ForMember(
                     m => m.UserNames,
                     opt => opt.MapFrom(e =>
                         e.ApplicationUsersInCourses
-                            .Select(auic => auic.ApplicationUser.UserName)));
+                            .Select(auic => auic.ApplicationUser.UserName)))
+                .ForMember(
+                    m => m.IsUserRegistered,
+                    opt => opt.MapFrom( e =>
+                        e.ApplicationUsersInCourses
+                            .Any(auic => auic.ApplicationUserId == userId && auic.CourseId == e.Id)));
         }
     }
 }

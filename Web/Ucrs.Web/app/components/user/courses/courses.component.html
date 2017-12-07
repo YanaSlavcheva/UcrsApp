@@ -14,8 +14,6 @@
         <tr>
             <th>Title</th>
             <th>Points</th>
-
-            <!--TODO: show only if user is not registered-->
             <th>Register for course</th>
             <th>Registered students</th>
         </tr>
@@ -33,7 +31,7 @@
                 <span *ngIf="course.points" class="label label-success">{{course.points}}</span>
             </td>
             <td>
-                <button (click)="registerForCourse(course)" class="btn btn-sm btn-success">
+                <button  *ngIf="!course.isUserRegistered" (click)="registerForCourse(course)" class="btn btn-sm btn-success">
                     Register for course
                 </button>
             </td>

@@ -4,4 +4,6 @@
     public title: string;
 
     public userNamesList: string;
+
+    public isUserRegistered: Boolean;
 }

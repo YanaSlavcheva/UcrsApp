@@ -31,11 +31,13 @@
         [HttpGet]
         public IActionResult All()
         {
+            var userId = this.User.GetId();
+
             var courses = this.courses
                 .All()
                 .Include(c => c.ApplicationUsersInCourses)
                 .ThenInclude(auc => auc.ApplicationUser)
-                .To<CourseViewModel>()
+                .To<CourseViewModel>(new { userId })
                 .ToList();
 
             return this.Ok(courses);
