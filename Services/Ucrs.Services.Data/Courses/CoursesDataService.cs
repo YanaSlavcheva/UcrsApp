@@ -1,5 +1,6 @@
 ﻿namespace Ucrs.Services.Data.Courses
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -10,14 +11,9 @@
     {
         private readonly IDeletableEntityRepository<Course> courses;
 
-        private readonly IRepository<ApplicationUserCourse> applicationUsersForCourses;
-
-        public CoursesDataService(
-            IDeletableEntityRepository<Course> courses,
-            IRepository<ApplicationUserCourse> applicationUsersForCourses)
+        public CoursesDataService(IDeletableEntityRepository<Course> courses)
         {
             this.courses = courses;
-            this.applicationUsersForCourses = applicationUsersForCourses;
         }
 
         public async Task Add(Course course)
@@ -31,9 +27,9 @@
         public async Task<Course> GetByIdAsync(int id) => await this.courses.GetByIdAsync(id);
 
         public IQueryable<int> GetAllCourseIdsByUser(string userId) =>
-            this.applicationUsersForCourses
+            this.courses
                 .All()
-                .Where(aufc => aufc.ApplicationUserId == userId)
-                .Select(aufc => aufc.CourseId);
+                .Where(c => c.ApplicationUsersInCourses.Any(auc => auc.ApplicationUserId == userId))
+                .Select(c => c.Id);
     }
 }
