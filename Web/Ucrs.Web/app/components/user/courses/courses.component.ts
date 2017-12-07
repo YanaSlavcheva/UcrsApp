@@ -16,6 +16,7 @@ export class CoursesComponent implements OnInit {
 
     public courses: Course[] = [];
     public errorMessage: string = null;
+    public infoMessage: string = null;
     public maxCoursePointsPerUser = 100;
 
     ngOnInit() {
@@ -26,8 +27,8 @@ export class CoursesComponent implements OnInit {
         this.coursesDataService.registerForCourse(course.id).subscribe(
             () => {
                 this.errorMessage = null;
-
-                //course.isDone = true;
+                this.infoMessage = 'Register for course was successful.';
+                this.ngOnInit();
             },
             (error: HttpErrorResponse) => this.errorMessage = error.error || 'Register for Course failed.');
     }
