@@ -12,6 +12,7 @@
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
+    using Ucrs.Common;
 
     public class CoursesController : BaseController
     {
@@ -67,6 +68,21 @@
             }
 
             var userId = this.User.GetId();
+            var userCourseIds = this.applicationUsersForCourses
+                .All()
+                .Where(aufc => aufc.ApplicationUserId == userId)
+                .Select(aufc => aufc.CourseId)
+                .ToList();
+
+            var userPointsFromCourses = this.courses
+                .All()
+                .Where(c => userCourseIds.Contains(c.Id))
+                .Sum(c => c.Points);
+
+            if (userPointsFromCourses >= GlobalConstants.MaxCoursePointsPerUser)
+            {
+                return this.BadRequest("Student cannot register in any more courses. The student has maximum points already.");
+            }
 
             var isUserEnrolledInCourse = this.applicationUsersForCourses
                 .All()

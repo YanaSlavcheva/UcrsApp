@@ -17,7 +17,6 @@ export class CoursesComponent implements OnInit {
     public courses: Course[] = [];
     public errorMessage: string = null;
     public infoMessage: string = null;
-    public maxCoursePointsPerUser = 100;
 
     ngOnInit() {
         this.coursesDataService.getAll().subscribe((data: Course[]) => this.courses = data);
