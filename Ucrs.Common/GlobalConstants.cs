@@ -4,6 +4,10 @@
     {
         public const string AdministratorRoleName = "Administrator";
 
+        public const string AdministratorUserName = "admin@abv.bg";
+
+        public const string AdministratorPassword = "123456";
+
         public const string JsonContentType = "application/json";
 
         public const int CourseTitleMaxLength = 200;
