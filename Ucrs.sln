@@ -1,33 +1,35 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E389DEB6-5F90-444B-A054-12A10D39C76F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Web", "Web\Ucrs.Web\Ucrs.Web.csproj", "{B90D1067-FE4C-400E-BA78-5413E30AB9ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Web", "Web\Ucrs.Web\Ucrs.Web.csproj", "{B90D1067-FE4C-400E-BA78-5413E30AB9ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{ACBE44C4-E198-45E2-BA02-6655250A0006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Data.Models", "Data\Ucrs.Data.Models\Ucrs.Data.Models.csproj", "{E9FDB52F-52DC-48B2-86E1-0176377BB53F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Data.Models", "Data\Ucrs.Data.Models\Ucrs.Data.Models.csproj", "{E9FDB52F-52DC-48B2-86E1-0176377BB53F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{516E002B-9E6E-4456-B7F6-EAA353966DE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7A731632-6714-44E2-A9E4-069EBA9E666C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Services", "Services\Ucrs.Services\Ucrs.Services.csproj", "{8522212F-F01E-4E20-9975-FCF5E10D71DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Services", "Services\Ucrs.Services\Ucrs.Services.csproj", "{8522212F-F01E-4E20-9975-FCF5E10D71DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Services.Messaging", "Services\Ucrs.Services.Messaging\Ucrs.Services.Messaging.csproj", "{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Services.Messaging", "Services\Ucrs.Services.Messaging\Ucrs.Services.Messaging.csproj", "{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Data", "Data\Ucrs.Data\Ucrs.Data.csproj", "{4B844ECB-E845-49A6-8B31-85E577933598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Data", "Data\Ucrs.Data\Ucrs.Data.csproj", "{4B844ECB-E845-49A6-8B31-85E577933598}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Data.Common", "Data\Ucrs.Data.Common\Ucrs.Data.Common.csproj", "{D0D59508-CF8B-4656-A344-396C530BB9DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Data.Common", "Data\Ucrs.Data.Common\Ucrs.Data.Common.csproj", "{D0D59508-CF8B-4656-A344-396C530BB9DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Common", "Ucrs.Common\Ucrs.Common.csproj", "{A2288C46-0FBF-43B6-80B6-3072FD65BC32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Common", "Ucrs.Common\Ucrs.Common.csproj", "{A2288C46-0FBF-43B6-80B6-3072FD65BC32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Web.Infrastructure", "Web\Ucrs.Web.Infrastructure\Ucrs.Web.Infrastructure.csproj", "{7A7A7986-1F5B-4EBD-9B17-8B41F8FABA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Web.Infrastructure", "Web\Ucrs.Web.Infrastructure\Ucrs.Web.Infrastructure.csproj", "{7A7A7986-1F5B-4EBD-9B17-8B41F8FABA58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Services.Data", "Services\Ucrs.Services.Data\Ucrs.Services.Data.csproj", "{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ucrs.Services.Data", "Services\Ucrs.Services.Data\Ucrs.Services.Data.csproj", "{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucrs.Tests", "Tests\Ucrs.Tests\Ucrs.Tests.csproj", "{6F23E498-50FE-4B47-B663-F4315ACC473B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F23E498-50FE-4B47-B663-F4315ACC473B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F23E498-50FE-4B47-B663-F4315ACC473B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F23E498-50FE-4B47-B663-F4315ACC473B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F23E498-50FE-4B47-B663-F4315ACC473B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,5 +90,9 @@ Global
 		{D0D59508-CF8B-4656-A344-396C530BB9DF} = {ACBE44C4-E198-45E2-BA02-6655250A0006}
 		{7A7A7986-1F5B-4EBD-9B17-8B41F8FABA58} = {E389DEB6-5F90-444B-A054-12A10D39C76F}
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
+		{6F23E498-50FE-4B47-B663-F4315ACC473B} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22A7F9DB-BA5F-47EB-8A55-4D31BECB37A3}
 	EndGlobalSection
 EndGlobal

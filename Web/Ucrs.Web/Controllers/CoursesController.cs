@@ -12,6 +12,7 @@
     using Ucrs.Web.Infrastructure.Extensions;
     using Ucrs.Web.Infrastructure.Mapping;
     using Ucrs.Web.ViewModels.Courses;
+    using System;
 
     public class CoursesController : BaseController
     {
@@ -30,6 +31,8 @@
         [HttpGet]
         public IActionResult All()
         {
+            throw new Exception();
+
             var userId = this.User.GetId();
 
             var courses = this.coursesData
