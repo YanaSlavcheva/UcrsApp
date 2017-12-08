@@ -12,7 +12,8 @@ export class CoursesDataService {
         CREATE: 'api/courses/create',
         REGISTER_FOR_COURSE: 'api/courses/registerforcourse/',
         GET_UPDATE: 'api/courses/getupdate/',
-        UPDATE: 'api/courses/update'
+        UPDATE: 'api/courses/update',
+        DELETE: 'api/courses/delete'
     };
 
     constructor(private httpClient: HttpClient) { }
@@ -35,5 +36,9 @@ export class CoursesDataService {
 
     public update(course: Course): Observable<any> {
         return this.httpClient.post(CoursesDataService.URLS.UPDATE, course);
+    }
+
+    public delete(course: Course): Observable<any> {
+        return this.httpClient.post(CoursesDataService.URLS.DELETE, course);
     }
 }

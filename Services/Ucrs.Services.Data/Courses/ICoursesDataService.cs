@@ -11,6 +11,8 @@
 
         Task Update(Course course);
 
+        Task Delete(Course course);
+
         IQueryable<Course> GetAll();
 
         Task<Course> GetByIdAsync(int id);

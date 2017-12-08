@@ -7,7 +7,7 @@
 </p>
 
 <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
-<div *ngIf="infoMessage" class="text-info">{{infoMessage}}</div>
+<div *ngIf="infoMessage" class="text-success">{{infoMessage}}</div>
 
 <table class="table">
     <thead>
@@ -30,9 +30,9 @@
         <tr *ngFor="let course of courses">
             <td>
                 <a routerLink="/user/course-update/{{course.id}}">Update course</a>
-                <!--<button (click)="update(course)" class="btn btn-sm btn-success">
-                    Update course
-                </button>-->
+                <button (click)="delete(course)" class="btn btn-sm btn-danger">
+                    Delete course
+                </button>
             </td>
             <td>{{course.title}}</td>
             <td>

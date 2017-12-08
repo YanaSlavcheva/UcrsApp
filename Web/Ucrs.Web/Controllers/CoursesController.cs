@@ -86,6 +86,23 @@
         }
 
         [HttpPost]
+        public async Task<IActionResult> Delete([FromBody]CourseBindingModel model)
+        {
+            if (model == null || !this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState.GetFirstError());
+            }
+
+            var course = await this.coursesData.GetByIdAsync(model.Id);
+
+            Mapper.Map(model, course);
+
+            await this.coursesData.Delete(course);
+
+            return this.Ok(Mapper.Map<CourseViewModel>(course));
+        }
+
+        [HttpPost]
         public async Task<IActionResult> RegisterForCourse(int id)
         {
             var course = await this.coursesData.GetByIdAsync(id);
@@ -105,7 +122,7 @@
 
             if (userPointsFromCourses >= GlobalConstants.MaxCoursePointsPerUser)
             {
-                return this.BadRequest("Student cannot register in any more courses. The student has maximum points already.");
+                return this.BadRequest("Student cannot register in any more courses because of the points restriction.");
             }
 
             var isUserEnrolledInCourse = this.coursesBusiness.IsUserEnrolled(userId, course.Id);

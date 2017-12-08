@@ -35,9 +35,13 @@ export class CoursesComponent implements OnInit {
             });
     }
 
-    //public update(course: Course): void {
-    //    this.coursesDataService.update(course).subscribe(
-    //        () => this.routerService.navigateByUrl('/user/courses'),
-    //        (error: HttpErrorResponse) => this.errorMessage = error.error || 'Update Course failed.');
-    //}
+    public delete(course: Course): void {
+        this.coursesDataService.delete(course).subscribe(
+            () => {
+                this.errorMessage = null;
+                this.infoMessage = 'Delete course was successful.';
+                this.ngOnInit();
+            },
+            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Delete Course failed.');
+    }
 }
