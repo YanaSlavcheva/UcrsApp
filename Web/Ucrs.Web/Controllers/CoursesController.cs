@@ -120,7 +120,7 @@
                 .Where(c => userCourseIds.Contains(c.Id))
                 .Sum(c => c.Points);
 
-            if (userPointsFromCourses >= GlobalConstants.MaxCoursePointsPerUser)
+            if ((userPointsFromCourses + course.Points) > GlobalConstants.MaxCoursePointsPerUser)
             {
                 return this.BadRequest("Student cannot register in any more courses because of the points restriction.");
             }

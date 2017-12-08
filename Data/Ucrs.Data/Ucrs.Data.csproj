@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\Ucrs.Services.Data\Ucrs.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\Ucrs.Services\Ucrs.Services.csproj" />
     <ProjectReference Include="..\..\Ucrs.Common\Ucrs.Common.csproj" />
     <ProjectReference Include="..\Ucrs.Data.Common\Ucrs.Data.Common.csproj" />

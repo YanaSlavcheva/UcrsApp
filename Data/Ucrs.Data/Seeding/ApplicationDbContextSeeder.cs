@@ -47,6 +47,7 @@
 
             await SeedRoles(roleManager);
             await SeedUsers(userManager);
+            await SeedCourses(dbContext);
         }
 
         private static async Task SeedRoles(RoleManager<ApplicationRole> roleManager)
@@ -70,14 +71,47 @@
 
         private static async Task SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            var adminUser = new ApplicationUser()
+            var user = await userManager.FindByNameAsync(GlobalConstants.AdministratorUserName);
+            if (user == null)
             {
-                UserName = GlobalConstants.AdministratorUserName,
-                Email = GlobalConstants.AdministratorUserName
-            };
+                var adminUser = new ApplicationUser()
+                {
+                    UserName = GlobalConstants.AdministratorUserName,
+                    Email = GlobalConstants.AdministratorUserName
+                };
 
-            await userManager.CreateAsync(adminUser, GlobalConstants.AdministratorPassword);
-            await userManager.AddToRoleAsync(adminUser, GlobalConstants.AdministratorRoleName);
+                await userManager.CreateAsync(adminUser, GlobalConstants.AdministratorPassword);
+                await userManager.AddToRoleAsync(adminUser, GlobalConstants.AdministratorRoleName);
+            }
+        }
+
+        private static async Task SeedCourses(ApplicationDbContext dbContext)
+        {
+            if (!dbContext.Courses.Any())
+            {
+                var courseMathematics = new Course
+                {
+                    Title = "Mathematics",
+                    Points = 8
+                };
+
+                var coursePhysics = new Course
+                {
+                    Title = "Physics",
+                    Points = 9
+                };
+
+                var courseArts = new Course
+                {
+                    Title = "Arts",
+                    Points = 9
+                };
+
+                await dbContext.Courses.AddAsync(courseMathematics);
+                await dbContext.Courses.AddAsync(coursePhysics);
+                await dbContext.Courses.AddAsync(courseArts);
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }
